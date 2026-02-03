@@ -67,7 +67,6 @@ typings/
 
 t.js
 .env
-package-lock.json
 /config
 
 ecosystem.config.js

@@ -1,7 +1,10 @@
 {
   "name": "@yuhong.gan.terence/backend-core",
-  "version": "0.0.7",
   "description": "",
+  "version": "0.0.7",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "exports": {
     ".": "./dist/index.js"

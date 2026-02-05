@@ -106,7 +106,13 @@ exports.formMongoPipeline = formMongoPipeline;
  * @returns {boolean} True if the string is a valid Mongo ObjectId, false otherwise.
  */
 const isMongoOid = someId => {
-    return new RegExp('^[0-9a-fA-F]{24}$').test(someId);
+    if (id) {
+        if (typeof id === 'string') return mongoose.Types.ObjectId.createFromHexString(id);
+        else if (mongoose.isObjectIdOrHexString(id)) return id;
+        else throw new Error('Id is not valid mongo Id');
+    }
+
+    return new mongoose.Types.ObjectId();
 };
 exports.isMongoOid = isMongoOid;
 

@@ -10,11 +10,12 @@ let logDir = null;
 /**
  * Initializes the logger by setting the log directory.
  * If the specified folder path does not exist, it creates the directory recursively.
+ * Default: Create a folder, named 'errs' at the current working directory.
  *
- * @param {string} [folderPath] - Optional path to the log directory. Defaults to '../../errs' relative to the current file if not provided.
+ * @param {string} [folderPath] - Optional path to the log directory.
  */
 const initLogger = (folderPath) => {
-    logDir = folderPath || path.join(__dirname, '../../errs');
+    logDir = folderPath || path.join(process.cwd(), 'errs');
     ensureDir(logDir);
 };
 

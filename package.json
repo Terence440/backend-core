@@ -1,7 +1,7 @@
 {
   "name": "@yuhong.gan.terence/backend-core",
   "description": "",
-  "version": "0.0.8",
+  "version": "0.0.9-alpha.0",
   "publishConfig": {
     "access": "public"
   },

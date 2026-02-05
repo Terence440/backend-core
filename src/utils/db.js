@@ -102,10 +102,10 @@ exports.formMongoPipeline = formMongoPipeline;
 /**
  * Checks if the provided string is a valid 24-character hexadecimal Mongo ObjectId.
  *
- * @param {string} someId - The string to validate as an Mongo ObjectId.
+ * @param {string} id - The string to validate as an Mongo ObjectId.
  * @returns {boolean} True if the string is a valid Mongo ObjectId, false otherwise.
  */
-const isMongoOid = someId => {
+const isMongoOid = id => {
     if (id) {
         if (typeof id === 'string') return mongoose.Types.ObjectId.createFromHexString(id);
         else if (mongoose.isObjectIdOrHexString(id)) return id;

@@ -3,7 +3,11 @@ name: Publish to npm
 on:
   push:
     tags:
-      - "v*.*.*"   # Only publish on version tags
+      - "v*.*.*" # Only publish on version tags
+
+concurrency:
+  group: "npm-publish"
+  cancel-in-progress: true
 
 jobs:
   publish:
@@ -18,6 +22,15 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
+
+      - name: Check branch for tag # Only trigger automate in origin/main
+        run: |
+          TAG_REF=$(git describe --tags --exact-match)
+          BRANCH=$(git branch -r --contains $TAG_REF | grep origin/main || true)
+          if [ -z "$BRANCH" ]; then
+            echo "Tag is not on main, skipping publish"
+            exit 78   # special code to skip workflow gracefully
+          fi
 
       - name: Install dependencies
         run: npm ci

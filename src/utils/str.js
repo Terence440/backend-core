@@ -37,3 +37,36 @@ const pad = (num, size = 2) => {
   return num;
 };
 exports.pad = pad;
+
+const formatMyr = (value) => {
+    if (typeof value !== 'number') {
+        console.error("Invalid value, Please provide a numeric value")
+        return '';
+    }
+
+    let formattedValue = value.toFixed(2);
+
+    formattedValue = formattedValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    return `RM${formattedValue}`;
+};
+exports.formatMyr = formatMyr;
+
+const formatMyrWithUnit = (value) => {
+    if (typeof value !== 'number') {
+        console.error("Invalid value, Please provide a numeric value")
+        return '';
+    }
+
+    let formattedValue = value;
+
+    if (value >= 1_000) {
+        formattedValue = parseFloat((value / 1_000).toFixed(3)) + 'k';
+    }
+    if (value >= 1_000_000) {
+        formattedValue = parseFloat((value / 1_000_000).toFixed(6)) + 'M';
+    }
+
+    return `RM${formattedValue.toString()}`;
+};
+exports.formatMyrWithUnit = formatMyrWithUnit;
